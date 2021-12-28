@@ -49,9 +49,14 @@ const ChatRoom = () => {
     setMessages(previousState => GiftedChat.append(previousState, [message]));
   };
 
-  const handleGoogleResponse = result => {
-    const text = result.queryResult.fulfillmentMessages[0].text.text[0];
-    sendBotResponse(text);
+  const handleGoogleResponse = (result, i) => {
+    const numberText = isNaN(i) ? 0 : i - 1;
+    const textBase = result.queryResult.fulfillmentMessages;
+    if (textBase[numberText]) {
+      sendBotResponse(textBase[numberText].text.text[0]);
+    } else {
+      sendBotResponse(textBase[0].text.text[0]);
+    }
   };
 
   const onSend = (newMessage = []) => {
@@ -60,7 +65,7 @@ const ChatRoom = () => {
     const message = newMessage[0].text;
     Dialogflow_V2.requestQuery(
       message,
-      result => handleGoogleResponse(result),
+      result => handleGoogleResponse(result, message),
       error => console.log(error),
     );
   };
@@ -81,8 +86,12 @@ const ChatRoom = () => {
   };
 
   const handleQuickReplyResponse = (result, i) => {
-    const text = result.queryResult.fulfillmentMessages[i].text.text[0];
-    sendBotResponse(text);
+    const textBase = result.queryResult.fulfillmentMessages;
+    if (textBase[i]) {
+      sendBotResponse(textBase[i].text.text[0]);
+    } else {
+      sendBotResponse(textBase[0].text.text[0]);
+    }
   };
 
   useEffect(() => {
@@ -115,6 +124,7 @@ const ChatRoom = () => {
         renderInputToolbar={props => {
           return <InputToolbarChat {...props} />;
         }}
+        renderFooter={() => <View style={styles.footer} />}
         renderChatFooter={() => (
           <View style={styles.quickReply}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -159,9 +169,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'PatrickHand-Regular',
   },
+  footer: {
+    height: 75,
+  },
   quickReply: {
     paddingHorizontal: 10,
-    marginVertical: 20,
+    paddingBottom: 30,
+    paddingTop: 15,
+    backgroundColor: '#fff',
     position: 'absolute',
     bottom: 0,
   },
