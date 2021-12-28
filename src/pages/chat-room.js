@@ -7,14 +7,13 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import {Dialogflow_V2} from 'react-native-dialogflow';
-import {GiftedChat, InputToolbar, Send} from 'react-native-gifted-chat';
+import {GiftedChat} from 'react-native-gifted-chat';
 import {dialogFlowConfig} from '../../env';
+import {InputToolbarChat, BubbleChat, SendMessage} from '../components/commons';
 import quickReplies from '../utils/quick-replies';
 
-const sendIcon = require('../assets/images/send.png');
 const avatarBot = require('../assets/images/2.jpg');
 
 const activeBot = {
@@ -28,13 +27,13 @@ const ChatRoom = () => {
     {
       _id: 2,
       name: 'A',
-      text: 'Ada yang bisa saya bantu?',
+      text: 'Ada yang bisa aku bantu?',
       createdAt: new Date(),
       user: activeBot,
     },
     {
       _id: 1,
-      text: `Hi, Saya ${activeBot.name}!`,
+      text: `Hi, Aku ${activeBot.name}!`,
       createdAt: new Date(),
       user: activeBot,
     },
@@ -107,25 +106,14 @@ const ChatRoom = () => {
         messages={messages}
         onSend={message => onSend(message)}
         user={{_id: 1}}
+        renderBubble={props => {
+          return <BubbleChat {...props} />;
+        }}
         renderSend={props => {
-          return (
-            <Send {...props}>
-              <View style={styles.iconSend}>
-                <Image source={sendIcon} style={styles.icon} />
-              </View>
-            </Send>
-          );
+          return <SendMessage {...props} />;
         }}
         renderInputToolbar={props => {
-          return (
-            <InputToolbar
-              {...props}
-              containerStyle={styles.inputContainer}
-              textInputProps={{
-                style: styles.inputToolbar,
-              }}
-            />
-          );
+          return <InputToolbarChat {...props} />;
         }}
         renderChatFooter={() => (
           <View style={styles.quickReply}>
@@ -170,33 +158,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     fontFamily: 'PatrickHand-Regular',
-  },
-  inputContainer: {
-    marginBottom: 6,
-    borderWidth: 0,
-    borderColor: 'transparent',
-    backgroundColor: 'transparent',
-  },
-  inputToolbar: {
-    width: '84%',
-    height: '80%',
-    fontSize: 16,
-    color: 'black',
-    paddingTop: 6,
-    paddingLeft: 14,
-    marginLeft: 10,
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: '#009dae',
-  },
-  iconSend: {
-    marginHorizontal: 2,
-    top: 5,
-  },
-  icon: {
-    height: 40,
-    width: 40,
   },
   quickReply: {
     paddingHorizontal: 10,
