@@ -16,7 +16,7 @@ const InputToolbarChat = ({...props}) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    marginBottom: 6,
+    marginBottom: 10,
     borderWidth: 0,
     borderColor: 'transparent',
     backgroundColor: 'transparent',
