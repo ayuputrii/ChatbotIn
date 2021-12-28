@@ -10,10 +10,11 @@ import {
   Image,
 } from 'react-native';
 import {Dialogflow_V2} from 'react-native-dialogflow';
-import {Bubble, GiftedChat, InputToolbar, Send} from 'react-native-gifted-chat';
+import {GiftedChat, InputToolbar, Send} from 'react-native-gifted-chat';
 import {dialogFlowConfig} from '../../env';
 import quickReplies from '../utils/quick-replies';
 
+const sendIcon = require('../assets/images/send.png');
 const avatarBot = require('../assets/images/2.jpg');
 
 const activeBot = {
@@ -110,7 +111,7 @@ const ChatRoom = () => {
           return (
             <Send {...props}>
               <View style={styles.iconSend}>
-                <Image source={avatarBot} style={styles.icon} />
+                <Image source={sendIcon} style={styles.icon} />
               </View>
             </Send>
           );
@@ -192,7 +193,6 @@ const styles = StyleSheet.create({
   iconSend: {
     marginHorizontal: 2,
     top: 5,
-    elevation: 5,
   },
   icon: {
     height: 40,
