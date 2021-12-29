@@ -12,6 +12,8 @@ target 'ChatbotIn' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-dialogflow', :path => '../node_modules/react-native-dialogflow'
+
   target 'ChatbotInTests' do
     inherit! :complete
     # Pods for testing
