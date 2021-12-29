@@ -17,5 +17,5 @@ yarn android and yarn start or npx react-native run-android and npx react-native
 ### Aplication Release
 
 ```
-https://s.id/QjZ2
+https://s.id/QkkI
 ```
