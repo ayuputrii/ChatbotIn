@@ -1,4 +1,4 @@
 import ChatRoom from './chat-room';
-import Home from './home';
+import LandingPage from './landing-page';
 
-export {Home, ChatRoom};
+export {LandingPage, ChatRoom};

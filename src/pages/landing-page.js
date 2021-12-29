@@ -11,7 +11,7 @@ import {
 import SplashScreen from 'react-native-splash-screen';
 import AvatarBot from '../assets/images/2.jpg';
 
-const Home = ({navigation}) => {
+const LandingPage = ({navigation}) => {
   useEffect(() => {
     SplashScreen.hide();
   });
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default LandingPage;

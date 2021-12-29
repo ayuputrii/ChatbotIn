@@ -1,5 +1,5 @@
 import React from 'react';
-import {Home, ChatRoom} from '../pages';
+import {LandingPage, ChatRoom} from '../pages';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
@@ -9,8 +9,8 @@ const Router = () => {
     <Stack.Navigator>
       <Stack.Screen
         options={{headerShown: false}}
-        name="Home"
-        component={Home}
+        name="LandingPage"
+        component={LandingPage}
       />
       <Stack.Screen
         options={{headerShown: false}}
