@@ -13,3 +13,9 @@ yarn OR npm i
 ```
 yarn android and yarn start or npx react-native run-android and npx react-native start
 ```
+
+### Aplication Release
+
+```
+https://s.id/QjZ2
+```
